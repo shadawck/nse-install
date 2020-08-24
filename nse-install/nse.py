@@ -1,8 +1,7 @@
 import toml
 import subprocess as sp
-import os.path
+from multiprocessing import Pool
 from os import path
-
 
 def load(toml_config):
     """Load toml config file
@@ -21,22 +20,27 @@ def check_nmap_path(configDict):
 
     return sp.Popen(["mkdir","-p",install_path])
 
+def install_script(installPath,scriptSource):
+    """Clone and install NSE script from CLI
+    """
+
+    sp.run(["git","clone","--depth=1",scriptSource,installPath])
+    return("Script Installed")
+    
+    
+
 
 def clean_install():
     """Clean install and unnecessary files (like README.md)
     """
     pass
 
-def install_script():
-    """Clone and install NSE script from toml config file
-    """
-    pass
-
-
-def install_all_script():
+def install_all_script(installPath,scriptsList):
     """Install all NSE script from toml config file
     """
-    pass
+
+    
+
 
 def update_script():
     """Update NSE script (git pull) from toml config file
@@ -54,7 +58,9 @@ def add_script():
     pass
 
 
-configDict = load("../script.toml")
-print(configDict)
+configDict = load("script.toml")
+install_path = configDict["install_path"]
 
-check_nmap_path(configDict)
+src = "https://github.com/theMiddleBlue/nmap-elasticsearch-nse"
+
+print(install_script(install_path,src))
