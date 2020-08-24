@@ -1,5 +1,7 @@
 import toml
 import subprocess as sp
+import os.path
+from os import path
 
 
 def load(toml_config):
@@ -11,9 +13,13 @@ def load(toml_config):
     
 
 def check_nmap_path(configDict):
-    """check nmap script path
+    """check nmap script path and if not, create one.
     """
-    pass
+    install_path = configDict["install_path"]
+    if path.exists(install_path):
+        return True
+
+    return sp.Popen(["mkdir","-p",install_path])
 
 
 def clean_install():
@@ -51,4 +57,4 @@ def add_script():
 configDict = load("../script.toml")
 print(configDict)
 
-load_config(configDict)
+check_nmap_path(configDict)
