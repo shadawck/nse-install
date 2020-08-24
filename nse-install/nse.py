@@ -24,10 +24,12 @@ def install_script(installPath,scriptSource):
     """Clone and install NSE script from CLI
     """
 
-    sp.run(["git","clone","--depth=1",scriptSource,installPath])
-    return("Script Installed")
-    
-    
+    if path.exists(scriptSource.split("/")[-1]):
+        print("Consider updating")
+    else:
+        print(scriptSource)
+        sp.run(["git","clone","--depth=1",scriptSource,installPath])
+
 
 
 def clean_install():
