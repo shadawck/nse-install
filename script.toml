@@ -1,0 +1,17 @@
+[path]
+install_path = "/usr/share/nmap"
+
+[nse-cript]
+script = [
+    "https://github.com/theMiddleBlue/nmap-elasticsearch-nse",
+    "https://github.com/cldrn/external-nse-script-library",
+    "https://github.com/hackertarget/nmap-nse-scripts",
+    "https://github.com/vulnersCom/nmap-vulners",
+    "https://github.com/takeshixx/nmap-scripts",
+    "https://github.com/OCSAF/freevulnsearch",
+    "https://github.com/jpalanco/nmap-scada",
+    "https://github.com/psc4re/NSE-scripts",  
+    "https://github.com/b4ldr/nse-scripts",
+    "https://github.com/s4n7h0/NSE",
+]
+
