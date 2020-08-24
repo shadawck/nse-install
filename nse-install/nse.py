@@ -8,14 +8,9 @@ def load(toml_config):
     if toml_config.split(".")[-1] == "toml":
         return toml.load(toml_config)
     return toml.load(toml_config+".toml")
-
-
-def load_config(configDict):
-    """read user config file
-    """
     
 
-def check_nmap_path():
+def check_nmap_path(configDict):
     """check nmap script path
     """
     pass
