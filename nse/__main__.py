@@ -5,6 +5,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="nse-install",description='Install and update external NSE script for Nmap')
     
     parser.add_argument("-l","--list", action="store_true", help="List available sources and scripts")
+    parser.add_argument("-c", "--clean",action="store_true", help="Remove all scripts previously installed")
+    
     parser.add_argument("-i","--install", help="Install a nse-script from source")
     parser.add_argument("-u","--update", help="Update a previously installed nse script")
 
@@ -22,6 +24,10 @@ if __name__ == "__main__":
     
     if args.list:
         nse.list_scripts(CONFIG_DICT)
+        exit(0)
+
+    if args.clean:
+        nse.clean_install(INSTALL_PATH,CONFIG_DICT)
         exit(0)
 
     if args.installall :  
