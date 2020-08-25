@@ -34,27 +34,29 @@ def install_script(installPath,scriptSource):
     full_path = installPath + nse_name
 
     if path.exists(full_path):
-        print("Consider updating")
-    else:
-        print("[bold green][+][/bold green] Installing %s by [bold red]@%s[/bold red]" % (nse_name,git_name))
-        sp.run(["git","clone","--depth=1",scriptSource,full_path],shell=False,stdout=sp.PIPE)
+        console.print("[+] Consider updating [bold yellow]%s[/bold yellow] by [bold green]@%s[/bold green]" %(nse_name,git_name), style="bold red")
+        return
+
+    print("[bold green][+][/bold green] Installing [bold yellow]%s[/bold yellow] by [bold red]@%s[/bold red]" % (nse_name,git_name))
+    sp.run(["git","clone","--depth=1",scriptSource,full_path],stdout=sp.DEVNULL)
     
     # unpack nse script
     nse_script = glob.glob(full_path+ "/*.nse")
     for file in nse_script:
         sp.run(["cp",file,installPath])
     console.print("[bold yellow]%s[/bold yellow] successfully Installed" % (nse_name),style="bold green")
-
+    return
 
 def clean_install():
     """Clean install and unnecessary files (like README.md)
     """
     pass
 
+
 def install_all_script(installPath,dictConfig):
     """Install all NSE script from toml config file
     """
-    nse_script_links = dictConfig["nse-scripts"]["script"]
+    nse_script_links = dictConfig["nse-scripts"]["scripts"]
 
     for links in nse_script_links:
         install_script(installPath,links)
@@ -79,4 +81,4 @@ configDict = load("script.toml")
 install_path = configDict["install_path"]
 
 src = "https://github.com/s4n7h0/NSE"
-install_script(install_path,src)
+install_all_script(install_path,configDict)
