@@ -1,7 +1,11 @@
-import toml
-import glob
+from rich.console import Console
+from rich import print
 import subprocess as sp
 from os import path
+import toml
+import glob
+
+console = Console()
 
 def load(toml_config):
     """Load toml config file
@@ -24,20 +28,22 @@ def check_nmap_path(configDict):
 def install_script(installPath,scriptSource):
     """Clone and install NSE script from CLI
     """
-    
-    nse_name = scriptSource.split("/")[-1]
+    git_data = scriptSource.split("/")
+    nse_name = git_data[-1]
+    git_name = git_data[-2]
     full_path = installPath + nse_name
 
     if path.exists(full_path):
         print("Consider updating")
     else:
-        sp.run(["git","clone","--depth=1",scriptSource,full_path])
+        print("[bold green][+][/bold green] Installing %s by [bold red]@%s[/bold red]" % (nse_name,git_name))
+        sp.run(["git","clone","--depth=1",scriptSource,full_path],shell=False,stdout=sp.PIPE)
     
     # unpack nse script
     nse_script = glob.glob(full_path+ "/*.nse")
     for file in nse_script:
         sp.run(["cp",file,installPath])
-    print(nse_name, "INSTALLED")
+    console.print("[bold yellow]%s[/bold yellow] successfully Installed" % (nse_name),style="bold green")
 
 
 def clean_install():
@@ -51,7 +57,6 @@ def install_all_script(installPath,dictConfig):
     nse_script_links = dictConfig["nse-scripts"]["script"]
 
     for links in nse_script_links:
-        print("Installing", links.split("/")[-1])
         install_script(installPath,links)
 
 def update_script():
