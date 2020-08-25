@@ -61,10 +61,27 @@ def install_all_script(installPath,dictConfig):
     for links in nse_script_links:
         install_script(installPath,links)
 
-def update_script():
+def update_script(installPath,scriptSource):
     """Update NSE script (git pull) from toml config file
     """
-    pass
+
+    git_data = scriptSource.split("/")
+    nse_name = git_data[-1]
+    git_name = git_data[-2]
+    full_path = installPath + nse_name
+
+    # check if installed 
+    if path.exists(full_path) == False:
+        console.print("[+] [bold yellow]%s[/bold yellow] not installed !" %(nse_name), style="bold red")
+        console.print("Installing [bold yellow]%s[/bold yellow] for you !" %(nse_name), style="bold green")
+        install_script(install_path, scriptSource)
+        return
+    
+    # update script with git pull
+    print("[bold green][+][/bold green] Updating [bold yellow]%s[/bold yellow] by [bold red]@%s[/bold red]" % (nse_name,git_name))
+    update_message = sp.run(["git","-C",full_path,"pull"], stdout=sp.PIPE,universal_newlines=True)
+    print(" [bold green][-][/bold green] [bold yellow]%s[/bold yellow] : %s" % (nse_name,update_message.stdout))
+    
 
 def update_script_all():
     """Update all script (pull) from toml config file
@@ -82,3 +99,4 @@ install_path = configDict["install_path"]
 
 src = "https://github.com/s4n7h0/NSE"
 install_all_script(install_path,configDict)
+update_script(install_path,src)
