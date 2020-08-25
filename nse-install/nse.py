@@ -44,6 +44,7 @@ def install_script(installPath,scriptSource):
     nse_script = glob.glob(full_path+ "/*.nse") + glob.glob(full_path+ "/*.txt") + glob.glob(full_path+ "/*.json") + glob.glob(full_path+ "/*.csv")
     for file in nse_script:
         sp.run(["cp",file,installPath],stdout=sp.DEVNULL)
+        print("[+] Unpacking",file)
     console.print("[bold yellow]%s[/bold yellow] successfully Installed" % (nse_name),style="bold green")
     return
 
@@ -52,7 +53,7 @@ def clean_install():
     """
     pass
 
-def install_all_script(installPath,dictConfig):
+def install_script_all(installPath,dictConfig):
     """Install all NSE script from toml config file
     """
     nse_script_links = dictConfig["nse-scripts"]["scripts"]
@@ -69,6 +70,7 @@ def update_script(installPath,scriptSource):
     git_name = git_data[-2]
     full_path = installPath + nse_name
 
+
     # check if installed 
     if path.exists(full_path) == False:
         console.print("[+] [bold yellow]%s[/bold yellow] not installed !" %(nse_name), style="bold red")
@@ -79,7 +81,19 @@ def update_script(installPath,scriptSource):
     # update script with git pull
     print("[bold green][+][/bold green] Updating [bold yellow]%s[/bold yellow] by [bold red]@%s[/bold red]" % (nse_name,git_name))
     update_message = sp.run(["git","-C",full_path,"pull"], stdout=sp.PIPE,universal_newlines=True)
-    print("[bold green][-][/bold green] [bold yellow]%s[/bold yellow] : %s" % (nse_name,update_message.stdout))
+
+    # the repo is already up to date so do nothing
+    if len(str(update_message.stdout)) == 20:
+        print("[bold green][-][/bold green] [bold yellow]%s[/bold yellow] : %s" % (nse_name,update_message.stdout))
+        return
+    # repo is pulled - or error
+    # TODO handle error
+    else: 
+        print("[bold green][-][/bold green] [bold yellow]%s[/bold yellow] : %s" % (nse_name,update_message.stdout))
+        nse_script = glob.glob(full_path+ "/*.nse") + glob.glob(full_path+ "/*.txt") + glob.glob(full_path+ "/*.json") + glob.glob(full_path+ "/*.csv")
+        for file in nse_script:
+            sp.run(["cp",file,installPath],stdout=sp.DEVNULL)
+            print("[bold green][+][/bold green]Unpacking",file)
     return
     
 
@@ -96,10 +110,10 @@ def add_script():
     """
     pass
 
-
+check_nmap_path(configDict)
 configDict = load("script.toml")
 install_path = configDict["install_path"]
 
-#install_all_script(install_path,configDict)
 
-install_all_script(install_path,configDict)
+#install_script_all(install_path,configDict)
+update_script_all(install_path,configDict)
