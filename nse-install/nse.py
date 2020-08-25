@@ -37,6 +37,7 @@ def install_script(installPath,scriptSource):
     nse_script = glob.glob(full_path+ "/*.nse")
     for file in nse_script:
         sp.run(["cp",file,installPath])
+    print(nse_name, "INSTALLED")
 
 
 def clean_install():
@@ -44,12 +45,14 @@ def clean_install():
     """
     pass
 
-def install_all_script(installPath,scriptsList):
+def install_all_script(installPath,dictConfig):
     """Install all NSE script from toml config file
     """
+    nse_script_links = dictConfig["nse-scripts"]["script"]
 
-    
-
+    for links in nse_script_links:
+        print("Installing", links.split("/")[-1])
+        install_script(installPath,links)
 
 def update_script():
     """Update NSE script (git pull) from toml config file
