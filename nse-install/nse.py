@@ -110,8 +110,9 @@ def add_script():
     """
     pass
 
-check_nmap_path(configDict)
+
 configDict = load("script.toml")
+check_nmap_path(configDict)
 install_path = configDict["install_path"]
 
 
