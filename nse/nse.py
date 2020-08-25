@@ -45,7 +45,7 @@ def install_script(installPath,scriptSource):
 
     if path.exists(full_path):
         console.print("[+] Consider updating [bold yellow]%s[/bold yellow] by [bold green]@%s[/bold green]" %(nse_name,git_name), style="bold red")
-        return
+        return 
 
     print("[bold green][+][/bold green] Installing [bold yellow]%s[/bold yellow] by [bold red]@%s[/bold red]" % (nse_name,git_name))
     capt = sp.run(["git","clone","--depth=1",scriptSource,full_path],stdout=sp.DEVNULL,stderr=sp.DEVNULL)
@@ -55,13 +55,8 @@ def install_script(installPath,scriptSource):
     for file in nse_script:
         sp.run(["cp",file,installPath],stdout=sp.DEVNULL)
         print("[+] Unpacking",file)
-    console.print("[bold yellow]%s[/bold yellow] successfully Installed" % (nse_name),style="bold green")
+    console.print("[bold green][+][/bold green] [bold yellow]%s[/bold yellow] successfully Installed !\n" % (nse_name),style="bold green")
     return
-
-def clean_install():
-    """Clean install and unnecessary files (like README.md)
-    """
-    pass
 
 def install_scripts_all(installPath,configDict):
     """Install all NSE script from toml config file
@@ -70,6 +65,33 @@ def install_scripts_all(installPath,configDict):
 
     for links in nse_script_links:
         install_script(installPath,links)
+
+
+def clean_install(installPath,configDict):
+    """Remove installed nse scripts
+    """
+
+    scripts = configDict["nse-scripts"]["scripts"]
+
+    for s in scripts : 
+        nse_name = s.split("/")[-1]
+        full_path = installPath + nse_name
+
+        print("[bold red][-] Deleting[/bold red] [bold yellow]%s[/bold yellow]" %(nse_name))
+        sp.Popen(['rm','-rf',full_path])
+
+
+        nse_script = glob.glob(full_path+ "/*.nse") + glob.glob(full_path+ "/*.txt") + glob.glob(full_path+ "/*.json") + glob.glob(full_path+ "/*.csv")
+        nse_script_path = [script.split("/")[-1] for script in nse_script]
+
+        for p in nse_script_path :
+            sp.Popen(['rm','-f',installPath + p])
+    print("[bold green][+] Everything Cleaned ![/bold green]")
+
+
+
+
+    
 
 def update_script(installPath,scriptSource):
     """Update NSE script (git pull) from toml config file
@@ -85,7 +107,7 @@ def update_script(installPath,scriptSource):
     if path.exists(full_path) == False:
         console.print("[+] [bold yellow]%s[/bold yellow] not installed !" %(nse_name), style="bold red")
         console.print("[+] Installing [bold yellow]%s[/bold yellow] for you !" %(nse_name), style="bold green")
-        install_script(install_path, scriptSource)
+        install_script(installPath, scriptSource)
         return
     
     # update script with git pull
