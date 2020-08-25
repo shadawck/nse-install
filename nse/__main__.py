@@ -43,5 +43,5 @@ if __name__ == "__main__":
         exit(0)
 
     if args.update:
-        nse.install_script(INSTALL_PATH,args.update)
+        nse.update_script(INSTALL_PATH,args.update)
         exit(0)
