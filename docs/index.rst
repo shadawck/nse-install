@@ -1,9 +1,6 @@
-.. Getdep documentation master file, created by
-   sphinx-quickstart on Wed Jun 19 13:42:39 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. nse-install documentation master file
 
-Getdep documentation
+Nse-install documentation
 ====================================
 
 Install and update external NSE script for `NMAP <https://github.com/nmap/nmap>`_
