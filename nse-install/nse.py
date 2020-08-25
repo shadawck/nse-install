@@ -41,7 +41,7 @@ def install_script(installPath,scriptSource):
     capt = sp.run(["git","clone","--depth=1",scriptSource,full_path],stdout=sp.DEVNULL,stderr=sp.DEVNULL)
     
     # unpack nse script
-    nse_script = glob.glob(full_path+ "/*.nse")
+    nse_script = glob.glob(full_path+ "/*.nse") + glob.glob(full_path+ "/*.txt") + glob.glob(full_path+ "/*.json") + glob.glob(full_path+ "/*.csv")
     for file in nse_script:
         sp.run(["cp",file,installPath],stdout=sp.DEVNULL)
     console.print("[bold yellow]%s[/bold yellow] successfully Installed" % (nse_name),style="bold green")
@@ -102,4 +102,4 @@ install_path = configDict["install_path"]
 
 #install_all_script(install_path,configDict)
 
-update_script_all(install_path,configDict)
+install_all_script(install_path,configDict)
