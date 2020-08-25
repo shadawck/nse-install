@@ -1,6 +1,6 @@
 import toml
+import glob
 import subprocess as sp
-from multiprocessing import Pool
 from os import path
 
 def load(toml_config):
@@ -20,16 +20,23 @@ def check_nmap_path(configDict):
 
     return sp.Popen(["mkdir","-p",install_path])
 
+
 def install_script(installPath,scriptSource):
     """Clone and install NSE script from CLI
     """
+    
+    nse_name = scriptSource.split("/")[-1]
+    full_path = installPath + nse_name
 
-    if path.exists(scriptSource.split("/")[-1]):
+    if path.exists(full_path):
         print("Consider updating")
     else:
-        print(scriptSource)
-        sp.run(["git","clone","--depth=1",scriptSource,installPath])
-
+        sp.run(["git","clone","--depth=1",scriptSource,full_path])
+    
+    # unpack nse script
+    nse_script = glob.glob(full_path+ "/*.nse")
+    for file in nse_script:
+        sp.run(["cp",file,installPath])
 
 
 def clean_install():
@@ -63,6 +70,5 @@ def add_script():
 configDict = load("script.toml")
 install_path = configDict["install_path"]
 
-src = "https://github.com/theMiddleBlue/nmap-elasticsearch-nse"
-
-print(install_script(install_path,src))
+src = "https://github.com/s4n7h0/NSE"
+install_script(install_path,src)
