@@ -2,7 +2,7 @@ CLI Examples
 =============
 
 Configuration
-==============
+--------------
 
 All configuration is done in `script.toml`:
 Set your installation path (`/usr/share/nmap` by default)
@@ -33,10 +33,12 @@ Use ``--help`` flag to get all optionals arguments.
 
 
 List Sources
-============
+------------
 
 List all sources you can install :
+
 .. code-block:: sh
+
     >> nse-install -l
     [+] nmap-elasticsearch-nse by @theMiddleBlue at https://github.com/theMiddleBlue/nmap-elasticsearch-nse
     [+] external-nse-script-library by @cldrn at https://github.com/cldrn/external-nse-script-library
@@ -50,20 +52,22 @@ List all sources you can install :
     [+] NSE by @s4n7h0 at https://github.com/s4n7h0/NSE
 
 
-
-
 Install & Install All
-======================
+----------------------
 
 Install a single source : 
+
 .. code-block:: sh
+
     >> nse-install -i https://github.com/theMiddleBlue/nmap-elasticsearch-nse
     [+] Installing nmap-elasticsearch-nse by @theMiddleBlue
     [+] Unpacking ./test/nmap-elasticsearch-nse/elasticsearch.nse
     [+] nmap-elasticsearch-nse successfully Installed !
 
 Or install all nse-scripts from `script.toml`
+
 .. code-block:: sh
+
     >> nse-install -ia 
     [+] Installing nmap-elasticsearch-nse by @theMiddleBlue
     [+] Unpacking ./test/nmap-elasticsearch-nse/elasticsearch.nse
@@ -86,16 +90,20 @@ Or install all nse-scripts from `script.toml`
     ...
 
 Update & Update All
-======================
+--------------------
 
 Update a single source:
+
 .. code-block:: sh
+
     >> nse-install -u https://github.com/theMiddleBlue/nmap-elasticsearch-nse
     [+] Updating nmap-elasticsearch-nse by @theMiddleBlue
     [-] nmap-elasticsearch-nse : Already up to date.
 
 Or update all nse-scripts from `script.toml`
+
 .. code-block:: sh
+
     >> nse-install -ua
     [+] Updating nmap-elasticsearch-nse by @theMiddleBlue
     [-] nmap-elasticsearch-nse : Already up to date.
@@ -109,10 +117,12 @@ Or update all nse-scripts from `script.toml`
     ...
 
 Clean
-=====
+------
 
 If you want to remove all scripts install with `nse-install`:
+
 .. code-block:: sh
+
     >> nse-install -c
     [-] Deleting nmap-elasticsearch-nse
     [-] Deleting external-nse-script-library
