@@ -17,5 +17,5 @@ Install and update external NSE script for `NMAP <https://github.com/nmap/nmap>`
 :doc:`Installation / Upgrading <./installation>`
    Instructions on how to get the distribution and upgrade it.
 
-:doc:`CLI Examples` 
+:doc:`CLI Examples <./examples>` 
    Examples of how to perform specific tasks with the CLI
