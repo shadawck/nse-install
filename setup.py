@@ -52,7 +52,7 @@ setup(
         '': ['*.toml'],
     },
     data_files=[
-        ('/etc/nse_install/', ['nse_install/script.toml']),
+        ('/etc/nse_install/', ['script.toml']),
     ],
     include_package_data=True,
     keywords='security, nse, nmap, pentest, scan, enumeration',

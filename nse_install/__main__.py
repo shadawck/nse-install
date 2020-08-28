@@ -18,7 +18,7 @@ def main():
     
     args = parser.parse_args()
     
-    CONFIG_DICT = nse.load("./script.toml")
+    CONFIG_DICT = nse.load("/etc/nse_install/script.toml")
     INSTALL_PATH = CONFIG_DICT["install_path"]
     nse.check_nmap_path(CONFIG_DICT)
 
