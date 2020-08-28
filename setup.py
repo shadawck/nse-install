@@ -46,7 +46,7 @@ setup(
     packages=["nse_install"],
     package_dir={'nse_install':'nse_install'}, 
     package_data={
-        'nse_install': ['script.txt'],
+        'nse_install': ['script.toml'],
     },
     keywords='security, nse, nmap, pentest, scan, enumeration',
     tests_require=test_deps,
