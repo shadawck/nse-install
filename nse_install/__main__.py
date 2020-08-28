@@ -1,7 +1,8 @@
+#__main__.py
 import argparse
 from nse_install import nse_install as nse
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(prog="nse-install",description='Install and update external NSE script for Nmap')
     
     parser.add_argument("-l","--list", action="store_true", help="List available sources and scripts")
@@ -45,3 +46,6 @@ if __name__ == "__main__":
     if args.update:
         nse.update_script(INSTALL_PATH,args.update)
         exit(0)
+
+if __name__ == "__main__":
+    main()

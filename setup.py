@@ -51,7 +51,7 @@ setup(
     install_requires=required,
     entry_points={
         "console_scripts": [
-            "nse_install=nse_install.__main__",
+            "nse_install=nse_install.__main__:main",
         ]
     },
 )
