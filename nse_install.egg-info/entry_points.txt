@@ -1,3 +1,0 @@
-[console_scripts]
-nse_install = nse_install.__main__:main
-

@@ -1,6 +1,0 @@
-toml
-rich
-
-[test]
-pytest
-pytest-cov
