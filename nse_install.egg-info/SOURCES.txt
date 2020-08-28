@@ -1,0 +1,12 @@
+README.md
+setup.py
+nse_install/__init__.py
+nse_install/__main__.py
+nse_install/nse_install.py
+nse_install/script.toml
+nse_install.egg-info/PKG-INFO
+nse_install.egg-info/SOURCES.txt
+nse_install.egg-info/dependency_links.txt
+nse_install.egg-info/entry_points.txt
+nse_install.egg-info/requires.txt
+nse_install.egg-info/top_level.txt
