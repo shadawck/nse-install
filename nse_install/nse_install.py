@@ -13,7 +13,7 @@ def load(toml_config):
     if toml_config.split(".")[-1] == "toml":
         return toml.load(toml_config)
     return toml.load(toml_config+".toml")
-    
+
 
 def check_nmap_path(configDict):
     """check nmap script path and if not, create one.
@@ -25,6 +25,7 @@ def check_nmap_path(configDict):
     return sp.Popen(["mkdir","-p",install_path])
 
 
+
 def list_scripts(configDict):
     scripts = configDict["nse-scripts"]["scripts"]
 
@@ -33,6 +34,7 @@ def list_scripts(configDict):
         nse_name = git_data[-1]
         git_name = git_data[-2]
         console.print("[bold green][+][/bold green] [bold yellow]%s[/bold yellow] by [bold red]@%s[/bold red] at %s" % (nse_name,git_name,s))
+
 
 
 def install_script(installPath,scriptSource):
@@ -58,6 +60,8 @@ def install_script(installPath,scriptSource):
     console.print("[bold green][+][/bold green] [bold yellow]%s[/bold yellow] successfully Installed !\n" % (nse_name),style="bold green")
     return
 
+
+
 def install_scripts_all(installPath,configDict):
     """Install all NSE script from toml config file
     """
@@ -65,6 +69,7 @@ def install_scripts_all(installPath,configDict):
 
     for links in nse_script_links:
         install_script(installPath,links)
+
 
 
 def clean_install(installPath,configDict):
@@ -89,9 +94,6 @@ def clean_install(installPath,configDict):
     print("[bold green][+] Everything Cleaned ![/bold green]")
 
 
-
-
-    
 
 def update_script(installPath,scriptSource):
     """Update NSE script (git pull) from toml config file
@@ -127,7 +129,8 @@ def update_script(installPath,scriptSource):
             sp.run(["cp",file,installPath],stdout=sp.DEVNULL)
             print("[bold green][+][/bold green]Unpacking",file)
     return
-    
+
+
 
 def update_scripts_all(installPath,configDict):
     """Update all script (pull) from toml config file
@@ -137,16 +140,8 @@ def update_scripts_all(installPath,configDict):
     for links in nse_script_links:
         update_script(installPath,links)
 
+
 def add_script():
     """add NSE script from CLI
     """
     pass
-
-
-#configDict = load("script.toml")
-#check_nmap_path(configDict)
-#install_path = configDict["install_path"]
-
-
-#install_scripts_all(install_path,configDict)
-#update_scripts_all(install_path,configDict)
