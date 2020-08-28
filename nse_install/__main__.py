@@ -29,7 +29,7 @@ def main():
 
     if args.clean:
         nse.clean_install(INSTALL_PATH,CONFIG_DICT)
-        exit(0)
+
 
     if args.installall :  
         nse.install_scripts_all(INSTALL_PATH,CONFIG_DICT)

@@ -47,14 +47,9 @@ setup(
     #package_data={
     #    'nse_install': ['script.toml'],
     #},
-    package_data = {
-        # If any package contains .toml include them
-        '': ['*.toml'],
-    },
     data_files=[
         ('/etc/nse_install/', ['script.toml']),
     ],
-    include_package_data=True,
     keywords='security, nse, nmap, pentest, scan, enumeration',
     tests_require=test_deps,
     extras_require=extras,
