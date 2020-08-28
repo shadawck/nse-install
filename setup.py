@@ -37,7 +37,7 @@ setup(
         "Topic :: System :: Installation/Setup",
         'Topic :: Security',
     ],
-    packages=["nse-install"],
+    packages=["nse_install"],
     include_package_data=True,
     keywords='security, nse, nmap, pentest, scan, enumeration',
     tests_require=test_deps,
@@ -45,7 +45,7 @@ setup(
     install_requires=required,
     entry_points={
         "console_scripts": [
-            "nse=nse.__main__",
+            "nse_install=nse_install.__main__",
         ]
     },
 )
