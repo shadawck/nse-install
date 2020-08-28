@@ -1,4 +1,4 @@
-MODULE=nse-install
+MODULE=nse_install
 
 docs:
 	cd docs && make html

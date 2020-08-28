@@ -9,6 +9,12 @@ with open("README.md", "r") as fh:
 with open('requirements.txt') as f:
     required = f.read().splitlines()
 
+with open("nse_install/__init__.py") as ver:
+    init = ver.read()
+
+version = init.split("=")[-1].strip().strip("\"")
+
+
 # test dependencies
 test_deps = [
     'pytest',
@@ -21,7 +27,7 @@ extras = {
 # This call to setup() does all the work
 setup(
     name="nse-install",
-    version="0.0.1",
+    version=version,
     description="Install and update external NSE script for nmap",
     long_description=long_description,
     long_description_content_type="text/markdown",
