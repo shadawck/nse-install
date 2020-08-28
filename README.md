@@ -4,12 +4,7 @@ Install and update external NSE script for [nmap](https://github.com/nmap/nmap).
 
 ## Install
 
-You can install ```nse-install``` either via pip (PyPI) or from source.
-To install using pip:
-```bash
-python3 -m pip install nse-install
-```
-Or manually:
+Install ```nse-install``` manually (PyPi version will be available in the future):
 ```
 git clone https://github.com/remiflavien1/nse-install
 cd nse-install   

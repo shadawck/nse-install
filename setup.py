@@ -39,7 +39,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
-        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Topic :: System :: Installation/Setup",
         'Topic :: Security',
     ],
@@ -55,6 +54,7 @@ setup(
     data_files=[
         ('/etc/nse_install/', ['nse_install/script.toml']),
     ],
+    include_package_data=True,
     keywords='security, nse, nmap, pentest, scan, enumeration',
     tests_require=test_deps,
     extras_require=extras,
