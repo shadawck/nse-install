@@ -119,7 +119,7 @@ Or update all nse-scripts from `script.toml`
 Clean
 ------
 
-If you want to remove all scripts install with `nse-install`:
+If you want to remove all scripts installed with `nse-install`:
 
 .. code-block:: sh
 
