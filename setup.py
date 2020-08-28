@@ -26,7 +26,7 @@ extras = {
 
 # This call to setup() does all the work
 setup(
-    name="nse-install",
+    name="nse_install",
     version=version,
     description="Install and update external NSE script for nmap",
     long_description=long_description,
@@ -44,7 +44,10 @@ setup(
         'Topic :: Security',
     ],
     packages=["nse_install"],
-    include_package_data=True,
+    package_dir={'nse_install':'nse_install'}, 
+    package_data={
+        'nse_install': ['script.txt'],
+    },
     keywords='security, nse, nmap, pentest, scan, enumeration',
     tests_require=test_deps,
     extras_require=extras,
