@@ -1,10 +1,12 @@
-install_path = "./test/"
+install_path = "/usr/share/nmap/"
 
 [nse-scripts]
 scripts = [
     "https://github.com/theMiddleBlue/nmap-elasticsearch-nse",
     "https://github.com/cldrn/external-nse-script-library",
     "https://github.com/hackertarget/nmap-nse-scripts",
+    "https://github.com/TKCERT/winnti-nmap-script",
+    "https://github.com/jonmosco/nmap-nse-scripts",
     "https://github.com/vulnersCom/nmap-vulners",
     "https://github.com/takeshixx/nmap-scripts",
     "https://github.com/OCSAF/freevulnsearch",
