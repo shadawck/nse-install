@@ -1,10 +1,5 @@
 # NSE-INSTALL
 
-[![codecov](https://codecov.io/gh/remiflavien1/getdep/branch/master/graph/badge.svg)](https://codecov.io/gh/remiflavien1/getdep)
-[![PyPI version](https://badge.fury.io/py/getdep.svg)](https://badge.fury.io/py/getdep)
-[![Requirements Status](https://requires.io/github/remiflavien1/getdep/requirements.svg?branch=master)](https://requires.io/github/remiflavien1/getdep/requirements/?branch=master)
-[![Documentation Status](https://readthedocs.org/projects/getdep/badge/?version=latest)](https://getdep.readthedocs.io/en/latest/?badge=latest)
-
 Install and update external NSE script for [nmap](https://github.com/nmap/nmap).
 
 ## Install
